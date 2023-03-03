@@ -1,0 +1,43 @@
+<h3 id="tableLabel1">Short URL Table</h3>
+
+<p *ngIf="!urls"><em>Loading...</em></p>
+<section *ngIf = "user">
+  <form #form="ngForm" (ngSubmit)="addUrl()">
+    <div>
+      <label for="urlInput" class="form-label">URL: </label>
+      <input type="text" required class="form-contol" name="urlInput" id="urlInput" [(ngModel)]="addUrlRequest.long" />
+    </div>
+    <button type="submit" class="btn-primary">Add</button>
+  </form>
+  <button *ngIf="user.roleId==1" (click)="deleteAll()">DeleteAll</button>
+</section>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="urls">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Long</th>
+      <th>Short</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let url of urls">
+      <td>{{ url.id }}</td>
+      <td>{{ url.long }}</td>
+      <td>
+        <a href="{{url.short}}">{{baseUrl}}{{url.short}}</a>
+      </td>
+      <td>
+        <a href="{{baseUrl}}url/info/{{url.id}}">View</a>
+        <span *ngIf="user">
+          <span *ngIf="user.roleId==1 || user.login == url.createdBy">
+            | <button (click)="deleteUrl(url.id)">Delete</button>
+          </span>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+

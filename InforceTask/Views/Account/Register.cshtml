@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Sign Up";
+}
+@model InforceTask.ViewModels.RegisterViewModel
+<h2>Registration</h2>
+
+
+<form asp-action="Register" asp-controller="Account">
+    <div class="validation" asp-validation-summary="ModelOnly" />
+    <div>
+        <div class="form-group">
+            <label asp-for="Login">Enter Login</label>
+            <input type="text" asp-for="Login" />
+            <span class="text-danger" asp-validation-for="Login" ></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password">Enter password</label>
+            <input asp-for="Password" />
+            <span class="text-danger" asp-validation-for="Password" ></span>
+        </div>
+            <div class="form-group">
+            <label asp-for="PasswordConfirm">Confirm password</label>
+            <input asp-for="PasswordConfirm" />
+            <span class="text-danger" asp-validation-for="PasswordConfirm" ></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Register" class="btn btn-outline-dark" />
+        </div>
+    </div>
+</form>

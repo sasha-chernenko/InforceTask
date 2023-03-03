@@ -1,0 +1,11 @@
+﻿@model About
+<form asp-action="Edit" asp-controller="About">
+    <div>
+        <div class="form-group">
+            <textarea cols="140" rows = "30" asp-for="Text" />@Model.Text</textarea>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-outline-dark" />
+        </div>
+    </div>
+</form>
